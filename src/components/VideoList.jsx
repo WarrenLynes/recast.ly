@@ -1,10 +1,14 @@
-var VideoList = () => (
+import VideoListEntry from './VideoListEntry.js';
+
+var VideoList = ({videos, onSelect}) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    { videos.map((video) =>
+      <VideoListEntry
+        key={video.id.videoId}
+        video={video}
+        onSelect={onSelect}
+      />
+    )}
   </div>
 );
 
@@ -12,6 +16,7 @@ var VideoList = () => (
 // Warnings will be shown in the console when the defined rules are violated
 VideoList.propTypes = {
   videos: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope.
